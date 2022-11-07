@@ -11,11 +11,16 @@ import com.convotis.converter.model.ConvertableFileType;
 import com.convotis.converter.model.ConverterException;
 import com.convotis.converter.service.ConverterService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 public class ConverterController {
 
 	@Autowired
 	private ConverterService converterService;
+
+
 
 	@RequestMapping(value = "/converter/json2csv", method = RequestMethod.POST)
 	public @ResponseBody String convertFromJsonToCsv(@RequestParam String fromValue){
@@ -23,8 +28,8 @@ public class ConverterController {
 		try {
 			csvReturnValue = converterService.convert(fromValue, ConvertableFileType.JSON, ConvertableFileType.CSV);
 		}catch (ConverterException e){
-			//TODO exception handling
-			e.printStackTrace();
+			log.error(e.getMessage());
+			return e.getMessage();
 		}
 		return  csvReturnValue;
 	}

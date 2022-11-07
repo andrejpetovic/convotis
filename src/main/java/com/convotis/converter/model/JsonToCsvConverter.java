@@ -25,11 +25,6 @@ public class JsonToCsvConverter implements ConverterIntf {
 		try {
 			String csvValue = null;
 
-			//test purposes
-			jsonValue = "[{\"name\": \"Pat\", \"contact\": { \"mail\": \"John@convotis.com\", \"phone\": \"555-12345\"}},  {\"name\": \"Ann\", \"contact\": { \"mail\": \"Ann@convotis.com\", \"phone\": \"555-434343\"}, \"address\": \"Katzenkamp 29\"} ]";
-			//jsonValue = "{\"name\": \"Ann\", \"contact\": { \"mail\": \"Ann@convotis.com\", \"phone\": \"555-434343\"}, \"address\": \"Katzenkamp 29\"}";
-
-
 			//1. validate json String for valid json format
 			if (!isValid(jsonValue)){
 				throw new ConverterException("Json Input Parameter is not a valid Json String");
